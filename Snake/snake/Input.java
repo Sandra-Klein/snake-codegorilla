@@ -23,17 +23,17 @@ public class Input {
         this.scanner = new Scanner(System.in);
     }
     public GameAction getUserInput() {
-        System.out.println("Enter your move (UP, DOWN, LEFT, RIGHT, QUIT): ");
+        System.out.println("Enter your move (W, S, A, D, QUIT): ");
         String userInput = scanner.nextLine().toUpperCase();
 
         switch (userInput) {
-            case "UP":
+            case "W":
                 return GameAction.MOVE_UP;
-            case "DOWN":
+            case "S":
                 return GameAction.MOVE_DOWN;
-            case "LEFT":
+            case "A":
                 return GameAction.MOVE_LEFT;
-            case "RIGHT":
+            case "D":
                 return GameAction.MOVE_RIGHT;
             case "QUIT":
                 return GameAction.QUIT;
