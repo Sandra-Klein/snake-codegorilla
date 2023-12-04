@@ -5,20 +5,24 @@ import java.io.IOException;
 public class Render {
     static {
         switch (System.getProperty("os.name")) {
-            case "Linux": OS = OperatingSystem.LINUX;
-            break;
-            case "Windows": OS = OperatingSystem.WINDOWS;
-            break;
+            case "Linux":
+                OS = OperatingSystem.LINUX;
+                break;
+            case "Windows":
+                OS = OperatingSystem.WINDOWS;
+                break;
         }
     }
 
     public int width;
     public int height;
     public static OperatingSystem OS;
+
     public Render(int width, int height) {
         this.width = width;
         this.height = height;
     }
+
     public String buildDisplayString(int coordinateX, int coordinateY) {
         StringBuilder out = new StringBuilder();
         for (int i = 0; i < width; i++) {
@@ -33,6 +37,7 @@ public class Render {
         }
         return out.toString();
     }
+
     public static void clear() throws IOException {
         if (Render.OS == OperatingSystem.LINUX) {
             System.out.print("\033[H\033[2J");
@@ -41,7 +46,8 @@ public class Render {
             Runtime.getRuntime().exec("cls");
         }
     }
-}
-enum OperatingSystem {
-    WINDOWS, LINUX;
+
+    public enum OperatingSystem {
+        WINDOWS, LINUX
+    }
 }
