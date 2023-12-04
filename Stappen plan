@@ -1,4 +1,15 @@
-Stappen plan Snake
+Stappenplan Snake
+
+DOR:
+- Iedereen moet toegang hebben tot de git repo, en hier mee kunnen omgaan.
+- Plugins moeten bij iedereen werken.
+- Het stappenplan verdelen in kleinere blokjes per iteratie.
+
+Woensdag eerste iteratie?
+
+DOD:
+- Presentatie?
+- Werken applicatie in IDE/JRE?
 
 1 Create a grid with cells - the game grid where the snake and food will be.
 2 Move the snake from cell to cell.
