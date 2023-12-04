@@ -43,7 +43,7 @@ public class Input {
                 startGame();
                 return GameAction.GAME_START;
             } else {
-                System.out.println("Invalid input. Enter START to begin the game.");
+                System.out.println("Invalid input.");
                 return getUserInput();
             }
         } else {
