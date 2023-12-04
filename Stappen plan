@@ -1,0 +1,8 @@
+Stappen plan Snake
+
+1 Create a grid with cells - the game grid where the snake and food will be.
+2 Move the snake from cell to cell.
+3 Control the snake's direction.
+4 Randomly place food items.
+5 Detect when the snake's head touches the food.
+6 Detect when the snake hits the wall of the game grid or tail.
