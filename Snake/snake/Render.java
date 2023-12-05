@@ -24,7 +24,7 @@ public class Render {
                 if (coordinateX == j && coordinateY == i) {
                     out.append('@');
                 } else {
-                    out.append('.');
+                    out.append(' ');
                 }
             }
             out.append("\n");
