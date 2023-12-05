@@ -22,6 +22,9 @@ public class Cell {
         }
         return message.toString();
     }
+    public boolean coordinatesOutOfBounds(int coordinateX, int coordinateY) {
+        return (this.gridArray.length - 1 < coordinateX || coordinateX < 0 || coordinateY < 0 || this.gridArray.length < coordinateY);
+    }
 }
 
 
