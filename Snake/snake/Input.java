@@ -30,7 +30,7 @@ public class Input {
     }
     public void startGame() {
         if (!gameStarted) {
-            System.out.println("Game started, have fun!");
+            System.out.println("Game started.");
             gameStarted = true;
         } else {
             System.out.println("The game has already started.");
