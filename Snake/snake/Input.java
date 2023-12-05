@@ -19,10 +19,10 @@ enum GameAction {
 }
 
 public class Input {
-    private Scanner scanner;
+    private final Scanner scanner;
     private boolean gameStarted;
     private Directions lastDirection;
-
+    
     public Input() {
         this.scanner = new Scanner(System.in);
         this.gameStarted = false;
@@ -36,7 +36,7 @@ public class Input {
             System.out.println("The game has already started.");
         }
     }
-    public GameAction getUserInput() {
+    private GameAction getUserInput() {
         if (!gameStarted) {
             System.out.println("Enter START to begin the game: ");
             String startInput = scanner.nextLine().toUpperCase();
