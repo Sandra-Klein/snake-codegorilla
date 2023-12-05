@@ -1,14 +1,22 @@
 package snake;
 public class Main {
     public static void main(String[] args) throws Exception {
-        Render.clear();
-        System.out.println(Render.OS);
-        Render display = new Render(20, 20);
-        Thread.sleep(1000);
-        for (int i = 0; i < 20; i++) {
+        Input input = new Input();
+        Coordinate snake = new Coordinate(9 , 9);
+        Cell cell = new Cell();
+        Render display = new Render(cell.gridArray[0].length, cell.gridArray.length);
+        input.startGame();
+        while(input.gameStarted) {
+            GameAction direction = input.getUserInput();
             Render.clear();
-            System.out.println(display.buildDisplayString(i, 19 - i));
-            Thread.sleep(500);
+            snake.update(input.lastDirection);
+            if (cell.coordinatesOutOfBounds(snake.x, snake.y)) {
+                System.out.println("GAME OVER!");
+                input.gameStarted = false;
+            } else {
+                String displayMessage = display.buildDisplayString(snake.x, snake.y);
+                System.out.println(displayMessage);
+            }
         }
     }
 }

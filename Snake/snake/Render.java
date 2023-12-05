@@ -16,7 +16,11 @@ public class Render {
     }
     public String buildDisplayString(int coordinateX, int coordinateY) {
         StringBuilder out = new StringBuilder();
+        out.append('+');
+        out.append("-".repeat(Math.max(0, width)));
+        out.append("+\n");
         for (int i = 0; i < width; i++) {
+            out.append('|');
             for (int j = 0; j < height; j++) {
                 if (coordinateX == j && coordinateY == i) {
                     out.append('@');
@@ -24,16 +28,19 @@ public class Render {
                     out.append(' ');
                 }
             }
-            out.append("\n");
+            out.append("|\n");
         }
+        out.append('+');
+        out.append("-".repeat(Math.max(0, width)));
+        out.append('+');
         return out.toString();
     }
     public static void clear() throws Exception {
         String[] command;
         if (Render.OS == OperatingSystem.WINDOWS) {
-            command = new String[]{"clear"};
-        } else {
             command = new String[]{"cmd", "/c", "cls"};
+        } else {
+            command = new String[]{"clear"};
         }
         new ProcessBuilder(command).inheritIO().start().waitFor();
     }
