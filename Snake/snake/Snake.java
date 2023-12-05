@@ -9,10 +9,10 @@ class Coordinate {
     void update(DirEnum option) {
         switch (option) {
             case UP:
-                this.y++;
+                this.y--;
                 break;
             case DOWN:
-                this.y--;
+                this.y++;
                 break;
             case LEFT:
                 this.x--;
