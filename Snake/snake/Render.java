@@ -1,13 +1,10 @@
 package snake;
 public class Render {
     static {
-        switch (System.getProperty("os.name")) {
-            case "Linux":
-                OS = OperatingSystem.LINUX;
-                break;
-            case "Windows":
-                OS = OperatingSystem.WINDOWS;
-                break;
+        if (System.getProperty("os.name").startsWith("Win")) {
+            OS = OperatingSystem.WINDOWS;
+        } else {
+            OS = OperatingSystem.UNIX;
         }
     }
     public int width;
@@ -33,7 +30,7 @@ public class Render {
     }
     public static void clear() throws Exception {
         String[] command;
-        if (Render.OS == OperatingSystem.LINUX) {
+        if (Render.OS == OperatingSystem.WINDOWS) {
             command = new String[]{"clear"};
         } else {
             command = new String[]{"cmd", "/c", "cls"};
@@ -41,6 +38,6 @@ public class Render {
         new ProcessBuilder(command).inheritIO().start().waitFor();
     }
     public enum OperatingSystem {
-        WINDOWS, LINUX
+        WINDOWS, UNIX
     }
 }
