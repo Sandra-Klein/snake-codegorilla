@@ -1,5 +1,7 @@
 package snake;
+class Snake {
 
+}
 class Coordinate {
     int x, y;
     Coordinate(int x, int y) {

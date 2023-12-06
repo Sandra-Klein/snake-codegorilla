@@ -1,9 +1,9 @@
 package snake;
 
-public class Cell {
+public class Game {
     char[][] gridArray;
 
-    Cell() {
+    Game() {
         this.gridArray = new char[20][20];
         for (int i = 0; i < gridArray.length; i++) {
             for (int j = 0; j < gridArray.length; j++) {
@@ -26,9 +26,3 @@ public class Cell {
         return (this.gridArray.length - 1 < coordinateX || coordinateX < 0 || coordinateY < 0 || this.gridArray.length  - 1 < coordinateY);
     }
 }
-
-
-
-
-
-

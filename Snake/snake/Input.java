@@ -1,6 +1,7 @@
 package snake;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 
 enum Directions {
     UP,
@@ -19,11 +20,9 @@ enum GameAction {
 }
 
 public class Input {
-    private final Scanner scanner;
     boolean gameStarted;
     Directions lastDirection;
     public Input() {
-        this.scanner = new Scanner(System.in);
         this.gameStarted = false;
         this.lastDirection = null;
     }
@@ -33,58 +32,53 @@ public class Input {
         }
     }
 
-    GameAction getUserInput() {
+    GameAction getUserInput() throws IOException {
+        BufferedInputStream inputStream = new BufferedInputStream(System.in);
         if (!gameStarted) {
-            String startInput = scanner.nextLine().toUpperCase();
-
-            if (startInput.equals("START")) {
+            char startInput = (char) inputStream.read();
+            if (startInput == 'n') {
                 startGame();
                 return GameAction.GAME_START;
             } else {
                 return getUserInput();
             }
         } else {
-            System.out.println("Enter your move (W, S, A, D, QUIT): ");
-            String userInput = scanner.nextLine().toUpperCase();
-
+            char userInput = (char) inputStream.read();
             switch (userInput) {
-                case "W":
+                case 'w':
                     if (lastDirection == Directions.DOWN) {
                         return getUserInput();
                     }
                     lastDirection = Directions.UP;
                     return GameAction.MOVE_UP;
 
-                case "S":
+                case 's':
                     if (lastDirection == Directions.UP) {
                         return getUserInput();
                     }
                     lastDirection = Directions.DOWN;
                     return GameAction.MOVE_DOWN;
 
-                case "A":
+                case 'a':
                     if (lastDirection == Directions.RIGHT) {
                         return getUserInput();
                     }
                     lastDirection = Directions.LEFT;
                     return GameAction.MOVE_LEFT;
 
-                case "D":
+                case 'd':
                     if (lastDirection == Directions.LEFT) {
                         return getUserInput();
                     }
                     lastDirection = Directions.RIGHT;
                     return GameAction.MOVE_RIGHT;
 
-                case "QUIT":
+                case 'm':
                     return GameAction.GAME_QUIT;
 
                 default:
                     return getUserInput();
             }
         }
-    }
-    public void closeScanner() {
-        scanner.close();
     }
 }
