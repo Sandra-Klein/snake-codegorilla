@@ -5,7 +5,7 @@ public class Main {
         Input input = new Input();
         Coordinate snake = new Coordinate(9 , 9);
         Game game = new Game();
-        Render display = new Render(game.gridArray[0].length, game.gridArray.length);
+        Render display = new Render();
         input.startGame();
         while(input.gameStarted) {
             GameAction action = input.getUserInput();
@@ -18,7 +18,7 @@ public class Main {
                 System.out.println("GAME OVER!");
                 input.gameStarted = false;
             } else {
-                String displayMessage = display.buildDisplayString(snake.x, snake.y);
+                String displayMessage = display.buildDisplayString(game);
                 System.out.println(displayMessage);
             }
         }
