@@ -4,30 +4,31 @@ import java.util.Random;
 
 public class Apple {
 
+    private static final char APPLE = 'A';
     private Random random;
+
     public int[] getCoordinateX() {
         return coordinateX;
-    }
-    public void setCoordinateX(int[] coordinateX) {
-        this.coordinateX = coordinateX;
     }
     public int[] getCoordinateY() {
         return coordinateY;
     }
-    public void setCoordinateY(int[] coordinateY) {
-        this.coordinateY = coordinateY;
-    }
-
     private int[] coordinateX, coordinateY;
     private int appleX, appleY;
+
     private void placeApple() {
         appleX = random.nextInt();
         appleY = random.nextInt();
     }
 
-    while (Game[appleX][appleY] != EMPTY_CELL) {
-        appleX = random.nextInt(BOARD_SIZE);
-        appleY = random.nextInt(BOARD_SIZE);
+    void placeApple(Game game) {
+        while (true) {
+            int randAppleX = random.nextInt(game.gridArray[0].length);
+            int randAppleY = random.nextInt(game.gridArray.length);
+            if (game.gridArray[randAppleY][randAppleX] == ' ') {
+                game.gridArray[randAppleY][randAppleX] = '*';
+                return;
+            }
+        }
     }
-
 }
