@@ -35,9 +35,7 @@ public class Input {
     GameAction getUserInput() throws IOException {
         BufferedInputStream inputStream = new BufferedInputStream(System.in);
         if (!gameStarted) {
-
             char startInput = (char) inputStream.read();
-
             if (startInput == 'n') {
                 startGame();
                 return GameAction.GAME_START;
