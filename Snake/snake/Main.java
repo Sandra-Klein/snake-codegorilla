@@ -3,9 +3,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Controls: wasd\nQuit: m");
         Input input = new Input();
-        Coordinate snake = new Coordinate(9 , 9);
+        Snake snake = new Snake();
+        snake.pointSnake(new Coordinate(9,9));
         Game game = new Game();
-        Render display = new Render(game.gridArray[0].length, game.gridArray.length);
+        Render display = new Render();
         input.startGame();
         while(input.gameStarted) {
             GameAction action = input.getUserInput();
@@ -13,14 +14,16 @@ public class Main {
                 input.gameStarted = false;
             }
             Render.clear();
-            snake.update(input.lastDirection);
-            if (game.coordinatesOutOfBounds(snake.x, snake.y)) {
+            snake.snakeArray[0].update(input.lastDirection);
+            snake.placeSnake(game);
+            if (game.coordinatesOutOfBounds(snake.snakeArray[0].x, snake.snakeArray[0].y)) {
                 System.out.println("GAME OVER!");
                 input.gameStarted = false;
             } else {
-                String displayMessage = display.buildDisplayString(snake.x, snake.y);
+                String displayMessage = display.buildDisplayString(game);
                 System.out.println(displayMessage);
             }
+            Thread.sleep(350, 0);
         }
     }
 }

@@ -7,33 +7,21 @@ public class Render {
             OS = OperatingSystem.UNIX;
         }
     }
-    public int width;
-    public int height;
     public static OperatingSystem OS;
-    public Render(int width, int height) {
-        this.width = width;
-        this.height = height;
-    }
-    public String buildDisplayString(int coordinateX, int coordinateY) {
-        int x = 0;
-        int y = 0;
+    public String buildDisplayString(Game game) {
         StringBuilder out = new StringBuilder();
         out.append('+');
-        out.append("-".repeat(Math.max(0, width)));
+        out.append("-".repeat(game.gridArray[0].length));
         out.append('+').append("\n");
-        for (int i = 0; i < width; i++) {
+        for (int i = 0; i < game.gridArray.length; i++) {
             out.append('|');
-            for (int j = 0; j < height; j++) {
-                if (coordinateX == j && coordinateY == i) {
-                    out.append('@');
-                } else {
-                    out.append(' ');
-                }
+            for (int j = 0; j < game.gridArray[0].length; j++) {
+                    out.append(game.gridArray[i][j]);
             }
             out.append("|\n");
         }
         out.append('+');
-        out.append("-".repeat(Math.max(0, width)));
+        out.append("-".repeat(game.gridArray[0].length));
         out.append('+');
         return out.toString();
     }

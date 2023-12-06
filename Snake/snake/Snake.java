@@ -1,6 +1,14 @@
 package snake;
 class Snake {
-
+    Coordinate[] snakeArray;
+    public void placeSnake(Game game) {
+        for (Coordinate coordinate: snakeArray) {
+            game.gridArray[coordinate.y][coordinate.x] = '@';
+        }
+    }
+    public void pointSnake(Coordinate coordinate) {
+        snakeArray = new Coordinate[]{coordinate};
+    }
 }
 class Coordinate {
     int x, y;
