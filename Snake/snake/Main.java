@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("Controls: wasd\nQuit: m");
         Input input = new Input();
-        Snake snake = new Snake();
+        Snake snake = new Snake(1);
         snake.pointSnake(new Coordinate(9,9));
         Game game = new Game();
         Render display = new Render();
