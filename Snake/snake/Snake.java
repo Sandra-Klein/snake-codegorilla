@@ -1,32 +1,33 @@
 package snake;
 class Snake {
-    Coordinate[] snakeArray;
+    Coordinate[] coordinateArray;
+    int numberOfElements;
     public void placeSnake(Game game) {
-        for (Coordinate coordinate: snakeArray) {
+        for (Coordinate coordinate: coordinateArray) {
             game.gridArray[coordinate.y][coordinate.x] = '@';
         }
     }
     public void pointSnake(Coordinate coordinate) {
-        snakeArray = new Coordinate[]{coordinate};
+        coordinateArray = new Coordinate[]{coordinate};
     }
     Snake(int value) {
         coordinateArray = new Coordinate[value];
         numberOfElements = value;
     }
-
-    Coordinate[] coordinateArray;
-    int numberOfElements;
-
-    void addCoordinateAtTheBack(Coordinate coordinate) {
-        coordinateArray[numberOfElements] = coordinate;
+    void eatApple(Coordinate frontCoordinate) {
         numberOfElements++;
-    }
-
-    void moveSnake(Coordinate coordinate) {
-        for (int i = numberOfElements; i >= 1; i--) {
-            coordinateArray[i] = coordinateArray[i - 1];
+        Coordinate[] newSnakeArray = new Coordinate[numberOfElements];
+        newSnakeArray[0] = frontCoordinate;
+        for (int i = 1; i < numberOfElements; i++) {
+            newSnakeArray[i] = this.coordinateArray[i - 1];
         }
-        coordinateArray[0] = coordinate;
+        this.coordinateArray = newSnakeArray;
+    }
+    void updateDirection(Directions direction) {
+        for (int i = 1; i < this.coordinateArray.length; i++) {
+            this.coordinateArray[i] = this.coordinateArray[i-1];
+        }
+        this.coordinateArray[0].update(direction);
     }
 }
 class Coordinate {
@@ -35,20 +36,20 @@ class Coordinate {
         this.x = x;
         this.y = y;
     }
-     void update(Directions option) {
-         switch (option) {
-             case UP:
-                 this.y--;
-                 break;
-             case DOWN:
-                 this.y++;
-                 break;
-             case LEFT:
-                 this.x--;
-                 break;
-             case RIGHT:
-                 this.x++;
-                 break;
-         }
-     }
+    void update(Directions option) {
+        switch (option) {
+            case UP:
+                this.y--;
+                break;
+            case DOWN:
+                this.y++;
+                break;
+            case LEFT:
+                this.x--;
+                break;
+            case RIGHT:
+                this.x++;
+                break;
+        }
+    }
 }

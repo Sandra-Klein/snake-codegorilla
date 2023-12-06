@@ -22,15 +22,26 @@ public class Main {
                 input.gameStarted = false;
             }
             Render.clear();
-            snake.snakeArray[0].update(input.lastDirection);
             game.resetData();
+            snake.updateDirection(input.lastDirection);
             snake.placeSnake(game);
-            if (game.coordinatesOutOfBounds(snake.snakeArray[0].x, snake.snakeArray[0].y)) {
+            Coordinate appleTestCoordinate = new Coordinate(10, 9);
+            System.out.println(appleTestCoordinate.x + " " + appleTestCoordinate.y);
+            System.out.println(snake.coordinateArray.length);
+            if (snake.coordinateArray[0].x == appleTestCoordinate.x && snake.coordinateArray[0].y == appleTestCoordinate.y) {
+                System.out.println("Eating apple!");
+                snake.eatApple(appleTestCoordinate);
+                System.out.println(snake.coordinateArray.length);
+            }
+            if (game.coordinatesOutOfBounds(snake.coordinateArray[0].x, snake.coordinateArray[0].y)) {
                 System.out.println("GAME OVER!");
                 input.gameStarted = false;
             } else {
                 String displayMessage = display.buildDisplayString(game);
                 System.out.println(displayMessage);
+            }
+            for (int i = 0; i < snake.coordinateArray.length; i++) {
+                System.out.println(i + " x: " + snake.coordinateArray[i].x + " y: " + snake.coordinateArray[i].y);
             }
             Thread.sleep(350, 0);
         }
