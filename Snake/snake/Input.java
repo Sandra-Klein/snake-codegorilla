@@ -3,13 +3,6 @@ package snake;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 
-enum Directions {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-}
-
 enum GameAction {
     MOVE_UP,
     MOVE_DOWN,
