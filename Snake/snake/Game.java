@@ -11,6 +11,13 @@ public class Game {
             }
         }
     }
+    void resetData() {
+        for (int i = 0; i < gridArray.length; i++) {
+            for (int j = 0; j < gridArray.length; j++) {
+                this.gridArray[i][j] = '.';
+            }
+        }
+    }
 
     public String toString() {
         StringBuilder message = new StringBuilder();
