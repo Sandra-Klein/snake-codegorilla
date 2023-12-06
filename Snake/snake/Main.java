@@ -15,6 +15,9 @@ public class Main {
         snake.pointSnake(new Coordinate(9,9));
         Game game = new Game();
         Render display = new Render();
+        /*
+        Tijdens het maken van alle objecten voor het spel zou ook het eerste appeltje al geplaatst kunnen worden.
+         */
         input.startGame();
         while(input.gameStarted) {
             GameAction action = input.getUserInput();
@@ -29,6 +32,10 @@ public class Main {
             System.out.println(appleTestCoordinate.x + " " + appleTestCoordinate.y);
             System.out.println(snake.coordinateArray.length);
             if (snake.coordinateArray[0].x == appleTestCoordinate.x && snake.coordinateArray[0].y == appleTestCoordinate.y) {
+                /*
+                Als het nieuwste snakeveld gelijk is aan coordinaten van appel, dan groeit de snake.
+                Hier zou ook een update kunnen plaatsvinden om de oude appel te verwijderen en een nieuwe te plaatsen.
+                 */
                 System.out.println("Eating apple!");
                 snake.eatApple(appleTestCoordinate);
                 System.out.println(snake.coordinateArray.length);
