@@ -15,11 +15,15 @@ public class Render {
         this.height = height;
     }
     public String buildDisplayString(int coordinateX, int coordinateY) {
+        int x = 0;
+        int y = 0;
         StringBuilder out = new StringBuilder();
+        out.append("\033[").append(++y).append(";").append(x).append("H");
         out.append('+');
         out.append("-".repeat(Math.max(0, width)));
-        out.append("+\n");
+        out.append('+');
         for (int i = 0; i < width; i++) {
+            out.append("\033[").append(++y).append(";").append(x).append("H");
             out.append('|');
             for (int j = 0; j < height; j++) {
                 if (coordinateX == j && coordinateY == i) {
@@ -28,8 +32,9 @@ public class Render {
                     out.append(' ');
                 }
             }
-            out.append("|\n");
+            out.append("|");
         }
+        out.append("\033[").append(++y).append(";").append(x).append("H");
         out.append('+');
         out.append("-".repeat(Math.max(0, width)));
         out.append('+');
