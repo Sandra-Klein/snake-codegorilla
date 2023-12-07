@@ -26,11 +26,14 @@ public class Main {
             if (action == GameAction.GAME_QUIT) {
                 input.gameStarted = false;
             }
-            System.out.println(snakeGame.snakeHead.x + " " + snakeGame.snakeHead.y + " " + snakeGame.coordinateArray.size());
             Render.clear();
             snakeGame.move();
             snakeGame.updateGrid();
             System.out.println(display.buildDisplayString(snakeGame));
+            System.out.println(snakeGame.snakeHead.x + " " + snakeGame.snakeHead.y + " " + snakeGame.coordinateArray.size());
+            for (Coordinate c : snakeGame.coordinateArray) {
+                System.out.print("XY: " + c.x + " " + c.y + " ");
+            }
         }
     }
 }
