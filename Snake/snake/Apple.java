@@ -2,31 +2,14 @@ package snake;
 
 import java.util.Random;
 
-public class Apple {
-
-    private static final char APPLE = 'A';
-    private Random random;
-
-    public int[] getCoordinateX() {
-        return coordinateX;
-    }
-    public int[] getCoordinateY() {
-        return coordinateY;
-    }
-    private int[] coordinateX, coordinateY;
-    private int appleX, appleY;
-
-    private void placeApple() {
-        appleX = random.nextInt();
-        appleY = random.nextInt();
-    }
-
-    void placeApple(Game game) {
+class AppleGenerator {
+    private static final Random random = new Random();
+    static void generateApple(TileEnum[][] gridArray) {
         while (true) {
-            int randAppleX = random.nextInt(game.gridArray[0].length);
-            int randAppleY = random.nextInt(game.gridArray.length);
-            if (game.gridArray[randAppleY][randAppleX] == ' ') {
-                game.gridArray[randAppleY][randAppleX] = '*';
+            int randAppleX = random.nextInt(gridArray[0].length);
+            int randAppleY = random.nextInt(gridArray.length);
+            if (gridArray[randAppleY][randAppleX] == TileEnum.EMPTY) {
+                gridArray[randAppleY][randAppleX] = TileEnum.APPLE;
                 return;
             }
         }

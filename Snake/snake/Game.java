@@ -1,35 +1,27 @@
 package snake;
 
-public class Game {
-    char[][] gridArray;
+abstract class Game {
+    private static TileEnum[][] gridArray;
 
-    Game() {
-        this.gridArray = new char[20][20];
+    static {
+        Game.gridArray = new TileEnum[20][20];
         for (int i = 0; i < gridArray.length; i++) {
             for (int j = 0; j < gridArray.length; j++) {
-                this.gridArray[i][j] = '.';
+                Game.gridArray[i][j] = TileEnum.EMPTY;
             }
         }
     }
-    void resetData() {
-        for (int i = 0; i < gridArray.length; i++) {
-            for (int j = 0; j < gridArray.length; j++) {
-                this.gridArray[i][j] = '.';
-            }
-        }
+    TileEnum[][] getOriginalGrid() {
+        return Game.gridArray;
     }
-
-    public String toString() {
-        StringBuilder message = new StringBuilder();
-        for (int i = 0; i < this.gridArray.length; i++) {
-            for (int j = 0; j < this.gridArray.length; j++) {
-                message.append(this.gridArray[i][j]);
-            }
-            message.append("\n");
-        }
-        return message.toString();
+}
+enum TileEnum {
+    SNAKE('@'), EMPTY(' '), APPLE('*');
+    private final char c;
+    TileEnum(char c) {
+        this.c = c;
     }
-    public boolean coordinatesOutOfBounds(int coordinateX, int coordinateY) {
-        return (this.gridArray.length - 1 < coordinateX || coordinateX < 0 || coordinateY < 0 || this.gridArray.length  - 1 < coordinateY);
+    public char getValue() {
+        return this.c;
     }
 }

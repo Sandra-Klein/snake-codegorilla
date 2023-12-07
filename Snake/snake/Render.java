@@ -8,7 +8,7 @@ public class Render {
         }
     }
     public static OperatingSystem OS;
-    public String buildDisplayString(Game game) {
+    public String buildDisplayString(Snake game) {
         StringBuilder out = new StringBuilder();
         out.append('+');
         out.append("-".repeat(game.gridArray[0].length));
@@ -16,7 +16,7 @@ public class Render {
         for (int i = 0; i < game.gridArray.length; i++) {
             out.append('|');
             for (int j = 0; j < game.gridArray[0].length; j++) {
-                    out.append(game.gridArray[i][j]);
+                    out.append(game.gridArray[i][j].getValue());
             }
             out.append("|\n");
         }
