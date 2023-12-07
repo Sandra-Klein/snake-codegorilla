@@ -9,17 +9,19 @@ public class Main {
         System.out.println("   `?8b  d88   88P88b  ,88b  d88888b   88b    ");
         System.out.println("`?888P' d88'   88b`?88P'`88bd88' `?88b,`?888P'");
         System.out.println("                                              ");
-        System.out.println("     Controls: wasd.             Quit: m.     ");
+        System.out.println("Controls: wasd   Quit: m    Press key to Start");
+        System.in.read();
         Input input = new Input();
         Snake snakeGame = new Snake(new Coordinate(9, 9));
         Render display = new Render();
-        System.out.println(display.buildDisplayString(snakeGame));
+        String[] cmdInsane = {"/bin/sh", "-c", "stty raw </dev/tty"};
+        Runtime.getRuntime().exec(cmdInsane).waitFor();
         input.startGame();
         try {
             while (input.gameStarted) {
-                GameAction action = input.getUserInput();
+                input.getUserInput();
                 snakeGame.setCurrentDir(input.lastDirection);
-                if (action == GameAction.GAME_QUIT) {
+                if (input.currentInput == GameAction.GAME_QUIT) {
                     input.gameStarted = false;
                 }
                 Render.clear();
@@ -28,7 +30,11 @@ public class Main {
                 System.out.println(display.buildDisplayString(snakeGame));
             }
         } catch (Exception e) {
+            String[] cmdSane = {"/bin/sh", "-c", "stty sane </dev/tty"};
+            Runtime.getRuntime().exec(cmdSane).waitFor();
             System.out.println("Game over");
+            System.out.println("Please try again");
+            System.out.println("Some time");
         }
     }
 }

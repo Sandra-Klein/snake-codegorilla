@@ -9,17 +9,22 @@ public class Render {
     }
     public static OperatingSystem OS;
     public String buildDisplayString(Snake game) {
+        int x = 0;
+        int y = 0;
         StringBuilder out = new StringBuilder();
+        out.append("\033[").append(++y).append(";").append(x).append("H");
         out.append('+');
         out.append("-".repeat(game.gridArray[0].length));
-        out.append('+').append("\n");
+        out.append('+');
         for (int i = 0; i < game.gridArray.length; i++) {
+            out.append("\033[").append(++y).append(";").append(x).append("H");
             out.append('|');
             for (int j = 0; j < game.gridArray[0].length; j++) {
                     out.append(game.gridArray[i][j].getValue());
             }
-            out.append("|\n");
+            out.append('|');
         }
+        out.append("\033[").append(++y).append(";").append(x).append("H");
         out.append('+');
         out.append("-".repeat(game.gridArray[0].length));
         out.append('+');
