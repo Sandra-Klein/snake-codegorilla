@@ -1,6 +1,8 @@
 package snake;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class Snake extends Game {
     TileEnum[][] gridArray;
     Directions currentDir;
@@ -38,7 +40,7 @@ public class Snake extends Game {
         this.gridArray[currentApple.y][currentApple.x] = TileEnum.APPLE;
     }
 
-    public void move() {
+    public void move() throws Exception {
         if (snakeHead.collides(this.currentApple)) { // grow and move
             this.coordinateArray.add(this.currentApple);
             this.currentApple = AppleGenerator.generateAppleCoordinates(this.snakeHead, this.coordinateArray, gridArray.length);// generate new and set new apple!
@@ -52,6 +54,9 @@ public class Snake extends Game {
            }
         }
         this.snakeHead.update(this.currentDir);
+        if (this.coordinateArray.contains(this.snakeHead)) {
+            throw new Exception ();
+        }
     }
 }
 class Coordinate {
@@ -63,6 +68,19 @@ class Coordinate {
     public boolean collides(Coordinate otherCoordinate) {
         return this.x == otherCoordinate.x && this.y == otherCoordinate.y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinate that = (Coordinate) o;
+        return x == that.x && y == that.y;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
+
     void update(Directions option) {
         switch (option) {
             case UP:
@@ -80,23 +98,3 @@ class Coordinate {
         }
     }
 }
-
-/*
-class Snake {
-    void eatApple(Coordinate frontCoordinate) {
-        numberOfElements++;
-        Coordinate[] newSnakeArray = new Coordinate[numberOfElements];
-        newSnakeArray[0] = frontCoordinate;
-        for (int i = 1; i < numberOfElements; i++) {
-            newSnakeArray[i] = this.coordinateArray[i - 1];
-        }
-        this.coordinateArray = newSnakeArray;
-    }
-    void updateDirection(Directions direction) {
-        for (int i = 1; i < this.coordinateArray.length; i++) {
-            this.coordinateArray[i] = this.coordinateArray[i-1];
-        }
-        this.coordinateArray[0].update(direction);
-    }
-}
- */
