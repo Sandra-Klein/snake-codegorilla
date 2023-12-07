@@ -27,7 +27,6 @@ public class Input {
             gameStarted = true;
         }
     }
-
     public void getUserInput() throws InterruptedException {
         this.currentInput = matchLastDirection(this.lastDirection);
         Runnable t = () -> {
@@ -59,7 +58,6 @@ public class Input {
                         lastDirection = Directions.UP;
                         this.currentInput = GameAction.MOVE_UP;
                         break;
-
                     case 's':
                         if (lastDirection == Directions.UP) {
                             this.currentInput = GameAction.MOVE_UP;
@@ -68,7 +66,6 @@ public class Input {
                         lastDirection = Directions.DOWN;
                         this.currentInput = GameAction.MOVE_DOWN;
                         break;
-
                     case 'a':
                         if (lastDirection == Directions.RIGHT) {
                             this.currentInput = GameAction.MOVE_RIGHT;
@@ -77,7 +74,6 @@ public class Input {
                         lastDirection = Directions.LEFT;
                         this.currentInput = GameAction.MOVE_LEFT;
                         break;
-
                     case 'd':
                         if (lastDirection == Directions.LEFT) {
                             this.currentInput = GameAction.MOVE_LEFT;
@@ -87,7 +83,6 @@ public class Input {
                         this.currentInput = GameAction.MOVE_RIGHT;
                         this.currentInput = matchLastDirection(this.lastDirection);
                         break;
-
                     case 'm':
                         this.currentInput = GameAction.GAME_QUIT;
                         break;
