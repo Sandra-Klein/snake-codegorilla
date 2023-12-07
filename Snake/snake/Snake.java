@@ -5,11 +5,15 @@ public class Snake extends Game {
     TileEnum[][] gridArray;
     Directions currentDir;
     Coordinate snakeHead;
+    Coordinate currentApple;
     ArrayList<Coordinate> coordinateArray;
     Snake(Coordinate startPos) {
         this.snakeHead = startPos;
         this.coordinateArray = new ArrayList<>();
-        this.updateGrid();
+        this.gridArray = super.getOriginalGrid();
+        this.placeSnake();
+        this.currentApple = AppleGenerator.generateAppleCoordinates(this.gridArray);
+        this.placeApple();
     }
     public void setCurrentDir(Directions currentDir) {
         this.currentDir = currentDir;
@@ -17,6 +21,7 @@ public class Snake extends Game {
     public void updateGrid() {
         this.gridArray = super.getOriginalGrid();
         this.placeSnake();
+        this.placeApple();
     }
     private void placeSnake() {
         for (Coordinate coordinate : this.coordinateArray) {
@@ -24,8 +29,13 @@ public class Snake extends Game {
         }
         this.gridArray[snakeHead.y][snakeHead.x] = TileEnum.SNAKE;
     }
+    private void placeApple() {
+        this.gridArray[currentApple.y][currentApple.x] = TileEnum.APPLE;
+    }
+    public void move() {
+        this.snakeHead.update(this.currentDir);
+    }
 }
-
 class Coordinate {
     int x, y;
     Coordinate(int x, int y) {

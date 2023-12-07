@@ -11,26 +11,29 @@ public class Main {
         System.out.println("                                              ");
         System.out.println("     Controls: wasd.             Quit: m.     ");
         Input input = new Input();
-        Snake snakeGame = new Snake(new Coordinate(3,5));
+        Snake snakeGame = new Snake(new Coordinate(3, 5));
         // snake.pointSnake(new Coordinate(9,9));
         // Game game = new Game();
         Render display = new Render();
-        AppleGenerator.generateApple(snakeGame.gridArray);
-        String displayMessage = display.buildDisplayString(snakeGame);
-        System.out.println(displayMessage);
+        System.out.println(display.buildDisplayString(snakeGame));
         /*
         Tijdens het maken van alle objecten voor het spel zou ook het eerste appeltje al geplaatst kunnen worden.
          */
         input.startGame();
+        while (input.gameStarted) {
+            GameAction action = input.getUserInput();
+            snakeGame.setCurrentDir(input.lastDirection);
+            if (action == GameAction.GAME_QUIT) {
+                input.gameStarted = false;
+            }
+            System.out.println(snakeGame.snakeHead.x + " " + snakeGame.snakeHead.y + " " + snakeGame.coordinateArray.size());
+            Render.clear();
+            snakeGame.move();
+            snakeGame.updateGrid();
+            System.out.println(display.buildDisplayString(snakeGame));
+        }
     }
 }
-//         while(input.gameStarted) {
-//             GameAction action = input.getUserInput();
-//             if (action == GameAction.GAME_QUIT) {
-//                 input.gameStarted = false;
-//             }
-//             Render.clear();
-//             game.resetData();
 //             snake.updateDirection(input.lastDirection);
 //             snake.placeSnake(game);
 //             Coordinate appleTestCoordinate = new Coordinate(10, 9);
